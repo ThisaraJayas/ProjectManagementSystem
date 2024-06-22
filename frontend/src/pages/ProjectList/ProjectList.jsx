@@ -1,9 +1,10 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { MixerHorizontalIcon } from '@radix-ui/react-icons'
+import { MagnifyingGlassIcon, MixerHorizontalIcon } from '@radix-ui/react-icons'
 import React from 'react'
 
 const tags=[
@@ -13,6 +14,9 @@ const tags=[
 export default function ProjectList() {
     const handleFilterChange=(section,value)=>{
         console.log("value",value,section);
+    }
+    const handleSearchChange=()=>{
+
     }
   return (
     <>
@@ -32,7 +36,7 @@ export default function ProjectList() {
                                     Category
                                 </h1>
                                 <div className='pt-5'>
-                                  <RadioGroup defaultValue="all" onValueChange={(value)=>handleFilterChange("category",value)}>
+                                  <RadioGroup className="space-y-3 pt-5" defaultValue="all" onValueChange={(value)=>handleFilterChange("category",value)}>
                                         <div className='flex items-center gap-2'>
                                             <RadioGroupItem value='all' id='r1'/>
                                             <Label htmlFor="r1">all</Label>
@@ -58,7 +62,7 @@ export default function ProjectList() {
                                     Tag
                                 </h1>
                                 <div className='pt-5'>
-                                  <RadioGroup defaultValue="all" onValueChange={(value)=>handleFilterChange("tag",value)}>
+                                  <RadioGroup className="space-y-3 pt-5" defaultValue="all" onValueChange={(value)=>handleFilterChange("tag",value)}>
                                         {tags.map((item)=>
                                             <div key={item} className='flex items-center gap-2'>
                                             <RadioGroupItem value={item} id={`r1-${item}`}/>
@@ -73,7 +77,12 @@ export default function ProjectList() {
                 </Card>
             </section>
             <section className='projectListSection w-full lg:w-[48rem]'>
-
+                <div className='flex gap-2 items-center pb-5 justify-between'>
+                    <div className='relative p-0 w-full'>
+                        <Input onChange={handleSearchChange} placeholder="search project" className="40% px-9"/>
+                         <MagnifyingGlassIcon className='absolute top-3 left-4'/>
+                    </div>
+                </div>
             </section>
         </div>
     </>
