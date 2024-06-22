@@ -8,7 +8,7 @@ export default function UserList() {
         <div className='border rounded-md'>
             <p className='py-2 px-3'>{"Raam" || "Unassigne"}</p>
         </div>
-        <div className='py-2 group hover:bg-slate-800 cursor-pointer flex
+        {[1,1,1,1].map((item)=><div key={item} className='py-2 group hover:bg-slate-800 cursor-pointer flex
         items-center space-x-4 rounded-md border px-4'>
             <Avatar>
                 <AvatarFallback>
@@ -17,8 +17,9 @@ export default function UserList() {
             </Avatar>
             <div className='space-y-1'>
                 <p className='text-sm leading-none'>Thisara</p>
+                <p className='text-sm text-muted-foregrounded'>@Thisara</p>
             </div>
-        </div>
+        </div>)}
     </div>
     </>
   )
