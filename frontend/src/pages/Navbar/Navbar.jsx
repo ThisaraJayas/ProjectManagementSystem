@@ -26,7 +26,7 @@ export default function Navbar() {
         <div className='flex gap-3 items-center'>
             <DropdownMenu>
                 <DropdownMenuTrigger>
-                    <Button>
+                    <Button variant="outline" size="icon" className="rounded-full border-2 border-gray-400">
                         <PersonIcon/>
                     </Button>
                 </DropdownMenuTrigger>
