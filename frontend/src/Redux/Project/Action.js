@@ -48,7 +48,7 @@ export const fetchProjectById=(id)=>async(dispatch)=>{
 export const deleteProject=({projectId})=>async(dispatch)=>{
     dispatch({type:DELETE_PROJECT_REQUEST})
     try{
-        const {data} = await api.delete("/api/projects"+projectId)
+        const {data} = await api.delete("/api/projects/"+projectId)
         console.log(" delete project",data);
         dispatch({type:DELETE_PROJECT_SUCCESS,projectId})
     }catch(error){

@@ -4,15 +4,23 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTrigger } from '@/components/ui/dialog'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { PlusIcon } from '@radix-ui/react-icons'
-import React from 'react'
+import React, { useEffect } from 'react'
 import InviteUserForm from './InviteUserForm'
 import IssueList from './IssueList'
 import ChatBox from './ChatBox'
+import { useDispatch } from 'react-redux'
+import { fetchProjectById } from '@/Redux/Project/Action'
+import { useParams } from 'react-router-dom'
 
 export default function ProjectDetails() {
+    const dispatch = useDispatch()
+    const {id}=useParams()
     const handleProjectInvitation=()=>{
 
     }
+    useEffect(()=>{
+        dispatch(fetchProjectById(id))
+    },[])
   return (
     <>
     <div className='mt-5 lg:px-10'>

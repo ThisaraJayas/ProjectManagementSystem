@@ -1,5 +1,4 @@
-const { REGISTER_REQUEST, LOGIN_REQUEST, GETUSER_REQUEST, REGISTER_SUCCESS, LOGIN_SUCCESS, GETUSER_SUCCESS, LOGOUT } = require("./ActionType")
-
+import { REGISTER_REQUEST, LOGIN_REQUEST, GETUSER_REQUEST, REGISTER_SUCCESS, LOGIN_SUCCESS, GETUSER_SUCCESS, LOGOUT } from "./ActionType";
 const initialState={
     user:null,
     loading:false,
@@ -25,6 +24,6 @@ export const authReducer=(state=initialState,action)=>{
             return initialState
         
         default:
-            state;
+            return state;
     }
 }

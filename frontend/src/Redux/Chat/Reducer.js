@@ -1,10 +1,10 @@
-import { error } from 'console';
+
 import * as actionTypes from './ActionTypes'
 const initialState={
     messages:[],
     loading:false,
     error:null,
-    chat:null
+    chat:null,
 }
 export const ChatReducer=(state=initialState,action)=>{
     switch(action.type){
@@ -46,6 +46,6 @@ export const ChatReducer=(state=initialState,action)=>{
                 error: action.error
             }
         default:
-            state;
+            return state;
     }
 }
