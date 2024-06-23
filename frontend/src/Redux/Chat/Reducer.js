@@ -28,6 +28,7 @@ export const ChatReducer=(state=initialState,action)=>{
             return{
                 ...state,
                 loading: false,
+                //action.message is put into ...state.messages
                 messages:[...state.messages, action.message]
             }
         case actionTypes.FETCH_CHAT_BY_PROJECT_SUCCESS:
