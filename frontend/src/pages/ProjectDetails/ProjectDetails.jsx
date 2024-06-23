@@ -8,40 +8,44 @@ import React, { useEffect } from 'react'
 import InviteUserForm from './InviteUserForm'
 import IssueList from './IssueList'
 import ChatBox from './ChatBox'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchProjectById } from '@/Redux/Project/Action'
 import { useParams } from 'react-router-dom'
+import { store } from '@/Redux/Store'
 
 export default function ProjectDetails() {
     const dispatch = useDispatch()
     const {id}=useParams()
+    const {project}=useSelector(store=>store)
+    console.log('ddd',project.ProjectDetails);
+    
     const handleProjectInvitation=()=>{
 
     }
     useEffect(()=>{
         dispatch(fetchProjectById(id))
-    },[])
+    },[id])
   return (
     <>
     <div className='mt-5 lg:px-10'>
         <div className='lg:flex gap-5 justify-between pb-4'>
             <ScrollArea className="h-screen lg:w-[69%] pr-2">
                 <div className='text-gray-400 pb-10 w-full'>
-                    <h1 className='text-lg font-semibold pb-5'>Create Ecommerce Website Using React</h1>
+                    <h1 className='text-lg font-semibold pb-5'>{project.ProjectDetails?.name}</h1>
                     <div className='space-y-5 pb-10 text-sm'>
                     <p className='w-full md:max-w-lg lg:max-w-xl '>
-                    Contrary to popular belief, Lorem Ipsum is not simply random text.
+                    {project.ProjectDetails?.description}
                     </p>
                     <div className='flex'>
                         <p className='w-36'>Project Lead :</p>
-                        <p>Thisara</p>
+                        <p>{project.ProjectDetails?.owner.fullName}</p>
                     </div>
                     <div className='flex'>
                         <p className='w-36'>Members :</p>
                         <div className='flex items-center gap-2'>
-                            {[1,1,1,1].map((item)=><Avatar className="cursor-pointer" key={item}>
-                                <AvatarFallback>T</AvatarFallback>
-                            </Avatar>)}
+                            {project.ProjectDetails?.team.map((item)=>(<Avatar className="cursor-pointer" key={item}>
+                                <AvatarFallback>{item.fullName[0]}</AvatarFallback>
+                            </Avatar>))}
                         </div>
                         <Dialog>
                             <DialogTrigger>
@@ -60,11 +64,11 @@ export default function ProjectDetails() {
                     </div>
                     <div className='flex'>
                         <p className='w-36'>Category :</p>
-                        <p>Fullstack</p>
+                        <p>{project.ProjectDetails?.category}</p>
                     </div>
                     <div className='flex'>
-                        <p className='w-36'>Status :</p>
-                        <Badge>Thisara</Badge>
+                        <p className='w-36'>Lead Name :</p>
+                        <Badge>{project.ProjectDetails?.owner.fullName}</Badge>
                     </div>
                 </div>
                 <section>

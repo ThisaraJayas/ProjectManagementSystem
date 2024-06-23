@@ -1,12 +1,22 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import React from 'react'
+import React, { useDeferredValue, useEffect } from 'react'
 import IssueCard from './IssueCard'
 import { Button } from '@/components/ui/button'
 import { PlusIcon } from '@radix-ui/react-icons'
 import CreateIssueForm from './CreateIssueForm'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchIssues } from '@/Redux/Issue/Action'
+import { useParams } from 'react-router-dom'
 
 export default function IssueList({title,status}) {
+    const dispatch = useDispatch()
+    const {id}=useParams()
+    const {issue}=useSelector(store=>store)
+
+    useEffect(()=>{
+        dispatch(fetchIssues(id))
+    },[id])
   return (
     <div>
         <Dialog>
@@ -16,7 +26,7 @@ export default function IssueList({title,status}) {
                 </CardHeader>
                 <CardContent className="px-2">
                     <div className='space-y-2'>
-                       {[1,1,1,1].map((item)=><IssueCard key={item}/>)} 
+                       {issue.issues.map((item)=><IssueCard projectId={id} item={item} key={item.id}/>)} 
                     </div>
                 </CardContent>
                 <CardFooter>

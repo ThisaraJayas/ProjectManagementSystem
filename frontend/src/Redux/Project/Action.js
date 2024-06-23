@@ -37,9 +37,9 @@ export const createProjects=(projectData)=>async(dispatch)=>{
 export const fetchProjectById=(id)=>async(dispatch)=>{
     dispatch({type:FETCH_PROJECT_BY_ID_REQUEST})
     try{
-        const {data} = await api.get("/api/projects"+id)
+        const {data} = await api.get("/api/projects/"+id)
         console.log("projects",data);
-        dispatch({type:FETCH_PROJECT_BY_ID_SUCCESS,projects:data})
+        dispatch({type:FETCH_PROJECT_BY_ID_SUCCESS,project:data})
     }catch(error){
 
     }

@@ -1,6 +1,22 @@
 import api from "@/config/api"
 import * as actionTypes from "./ActionTypes"
 
+export const createIssue = (issueData)=>{
+    
+    return async(dispatch)=>{
+        dispatch({type: actionTypes.CREATE_ISSUES_REQUEST})
+        try{
+            const response = await api.post("/api/issues",issueData)
+            console.log("issue created ",response.data);
+            dispatch({type: actionTypes.CREATE_ISSUES_SUCCESS, issue: response.data})
+        }catch(error){
+            console.log("error ",error);
+            dispatch({type:actionTypes.CREATE_ISSUES_FAILURE, error: error.message})
+        }
+
+    }
+}
+
 export const fetchIssues = (id)=>{
     
     return async(dispatch)=>{
@@ -62,5 +78,16 @@ export const assignedUserToIssue = ({issueId,userId})=>{
             dispatch({type:actionTypes.ASSIGNED_ISSUE_TO_USER_FAILURE, error: error.message})
         }
 
+    }
+}
+
+export const issueDelete=({issueId})=>async(dispatch)=>{
+    dispatch({type:actionTypes.DELETE_ISSUE_REQUEST})
+    try{
+        const {data} = await api.delete("/api/issues/"+issueId)
+        console.log(" delete issue",data);
+        dispatch({type:actionTypes.DELETE_ISSUE_SUCCESS,issueId})
+    }catch(error){
+        console.log(error);
     }
 }
