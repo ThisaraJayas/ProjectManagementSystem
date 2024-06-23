@@ -70,7 +70,7 @@ export default function ProjectDetails() {
                 </div>
                 
             </ScrollArea>
-            <div>
+            <div className='lg:w-[30%] rounded sticky right-5 top-0'>
                 <ChatBox/>
             </div>
         </div>
